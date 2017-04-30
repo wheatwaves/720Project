@@ -221,6 +221,8 @@ train_data = mnist.input_data.read_data_sets(data_directory, one_hot=True).train
 
 fetches=[]
 fetches.extend([Lx,Lz,train_op])
+X,Y = load_data('train_32x32.mat')
+train_iters = floor(X.shape[-1]/batch_size)
 Lxs=[0]*train_iters
 Lzs=[0]*train_iters
 config = tf.ConfigProto()
@@ -230,8 +232,7 @@ sess=tf.InteractiveSession(config=config)
 saver = tf.train.Saver() # saves variables learned during training
 tf.global_variables_initializer().run()
 #saver.restore(sess, "draw_data/drawmodel.ckpt") # to restore from model, uncomment this line
-X,Y = load_data('train_32x32.mat')
-train_iters = floor(X.shape[-1]/batch_size)
+
 for i in range(train_iters):
 	#xtrain,_=train_data.next_batch(batch_size) # xtrain is (batch_size x img_size)
     xtrain = fetch_data(X,i,batch_size)
@@ -241,10 +242,10 @@ for i in range(train_iters):
         xtrain_gray[i] = np.dot(a[...,:3],[0.299, 0.587, 0.114])
     xtrain_gray = xtrain_gray.reshape([img_size,batch_size]).T
     feed_dict={x:xtrain_gray}
-	results=sess.run(fetches,feed_dict)
-	Lxs[i],Lzs[i],_=results
-	if i%100==0:
-		print("iter=%d : Lx: %f Lz: %f" % (i,Lxs[i],Lzs[i]))
+    results=sess.run(fetches,feed_dict)
+    Lxs[i],Lzs[i],_=results
+    if i%100==0:
+        print("iter=%d : Lx: %f Lz: %f" % (i,Lxs[i],Lzs[i]))
 
 ## TRAINING FINISHED ##
 # X_list = [0]*train_iters
