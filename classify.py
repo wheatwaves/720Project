@@ -5,7 +5,7 @@ from keras.layers import Dense, Dropout
 from keras.optimizers import RMSprop
 import cPickle, numpy
 
-data_path = '/usr0/home/hongliay/datasets/sample_hidden_feature'
+data_path = '/usr0/home/hongliay/datasets/svhn_hid'
 batch_size = 100
 epochs = 10
 
@@ -18,7 +18,7 @@ print 'Data loaded'
 X_all = numpy.concatenate(X, axis=1)
 Y_all = numpy.concatenate(Y, axis=0)
 
-n_train, n_test = 90000, 10000
+n_train, n_test = 60000, 10000
 
 X_train = X_all[:, :n_train, :]
 Y_train = Y_all[:n_train, :]

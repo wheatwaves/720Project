@@ -162,7 +162,7 @@ y_hat_idx = np.argmax(y_hat,axis=1)
 y_idx = np.argmax(y,axis=1)
 diff = y_idx-y_hat_idx
 n_tot = y.shape[0]
-n_rig = (diff==0).sum()
+n_rig = (diff == 0).sum()
 acc = n_rig*100.0/n_tot
 print "Accuracy: %0.02f pct (%d of %d) right" % (acc, n_rig, n_tot)
 
