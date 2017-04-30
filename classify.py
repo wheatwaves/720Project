@@ -18,7 +18,7 @@ print 'Data loaded'
 X_all = numpy.concatenate(X, axis=1)
 Y_all = numpy.concatenate(Y, axis=0)
 
-n_train, n_test = 9000, 1000
+n_train, n_test = 90000, 10000
 
 X_train = X_all[:, :n_train, :]
 Y_train = Y_all[:n_train, :]
@@ -38,10 +38,11 @@ for i in xrange(T):
     model.add(Dropout(0.2))
     model.add(Dropout(0.2))
     model.add(Dense(10, activation='softmax'))
-    model.summary()
+    print 'Compiling ... '
     model.compile(loss='categorical_crossentropy',
                   optimizer=RMSprop(),
                   metrics=['accuracy'])
+    print 'Compilation done ... '
     history = model.fit(x_train, y_train,
                         batch_size=batch_size,
                         verbose=1,
