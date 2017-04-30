@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cdd65f9b-0080-4ea6-a048-234bf118c26a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classify.py" afterPath="$PROJECT_DIR$/classify.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dcgan.py" afterPath="$PROJECT_DIR$/dcgan.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="720Project.iws" />
@@ -28,8 +27,8 @@
       <file leaf-file-name="classify.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classify.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4178273">
-              <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.43871868">
+              <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
               <folding>
                 <element signature="e#31#66#0" expanded="true" />
               </folding>
@@ -351,8 +350,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classify.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4178273">
-          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.43871868">
+          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
           <folding>
             <element signature="e#31#66#0" expanded="true" />
           </folding>

@@ -3,6 +3,7 @@ __author__ = 'yuhongliang324'
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from keras.optimizers import RMSprop
+from keras.utils import to_categorical
 import cPickle, numpy
 
 data_path = '/usr0/home/hongliay/datasets/svhn_hid'
@@ -15,8 +16,11 @@ X, Y = cPickle.load(reader)
 reader.close()
 print 'Data loaded'
 
+X = X[: 700]
 X_all = numpy.concatenate(X, axis=1)
-Y_all = numpy.concatenate(Y, axis=0)
+Y_all = numpy.reshape(Y, (70000,))
+Y_all = to_categorical(Y_all - 1, 10)
+# Y_all = numpy.concatenate(Y, axis=0)
 
 n_train, n_test = 60000, 10000
 
