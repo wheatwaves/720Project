@@ -13,6 +13,7 @@ import tensorflow as tf
 from tensorflow.examples.tutorials import mnist
 import numpy as np
 import os
+import cPickle as cp
 os.environ['CUDA_VISIBLE_DEVICES'] = "0"
 tf.flags.DEFINE_string("data_dir", "", "")
 tf.flags.DEFINE_boolean("read_attn", True, "enable attention for reader")
@@ -158,8 +159,7 @@ h_dec_prev=tf.zeros((batch_size,dec_size))
 enc_state=lstm_enc.zero_state(batch_size, tf.float32)
 dec_state=lstm_dec.zero_state(batch_size, tf.float32)
 
-## DRAW MODEL ## 
-hidden_feature = tf.zeros((0,0))
+## DRAW MODEL ##
 # construct the unrolled computational graph
 for t in range(T):
     c_prev = tf.zeros((batch_size,img_size)) if t==0 else cs[t-1]
@@ -244,7 +244,9 @@ for i in range(train_iters):
     Y_list[i] = ytrain
 X_list = np.array(X_list)
 Y_list = np.array(Y_list)
-np.save('draw_data/hidden_feature.npy',[X_list,Y_list])
+with open('hidden_feature') as f:
+    cp.dump([X_list,Y_list],f)
+#np.save('draw_data/hidden_feature.npy',[X_list,Y_list])
 # canvases=sess.run(cs,feed_dict) # generate some examples
 # canvases=np.array(canvases) # T x batch x img_size
 #
