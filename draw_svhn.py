@@ -25,7 +25,7 @@ FLAGS = tf.flags.FLAGS
 ## MODEL PARAMETERS ##
 
 A,B = 32,32 # image width,height
-img_size = B*A*3 # the canvas size
+img_size = B*A # the canvas size
 enc_size = 256 # number of hidden units / output size in LSTM
 dec_size = 256
 read_n = 12 # read glimpse grid width/height
@@ -35,7 +35,7 @@ write_size = write_n*write_n if FLAGS.write_attn else img_size
 z_size=100 # QSampler output size
 T=10 # MNIST generation sequence length
 batch_size=100 # training minibatch size
-train_iters=10000
+#train_iters=10000
 learning_rate=1e-3 # learning rate for optimizer
 eps=1e-8 # epsilon for numerical stability
 
@@ -235,8 +235,12 @@ train_iters = floor(X.shape[-1]/batch_size)
 for i in range(train_iters):
 	#xtrain,_=train_data.next_batch(batch_size) # xtrain is (batch_size x img_size)
     xtrain = fetch_data(X,i,batch_size)
-    xtrain = xtrain.reshape([img_size,batch_size]).T
-	feed_dict={x:xtrain}
+    xtrain_gray = np.zeros((xtrain.shape[0],xtrain.shape[1],xrain.shape[3]))
+    for i in len(xtrain.shape[3]):
+        a = xtrain[:,:,:,i]
+        xtrain_gray[i] = np.dot(a[...,:3],[0.299, 0.587, 0.114])
+    xtrain_gray = xtrain_gray.reshape([img_size,batch_size]).T
+    feed_dict={x:xtrain_gray}
 	results=sess.run(fetches,feed_dict)
 	Lxs[i],Lzs[i],_=results
 	if i%100==0:
