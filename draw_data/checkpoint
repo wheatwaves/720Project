@@ -1,0 +1,2 @@
+model_checkpoint_path: "/tmp/draw/drawmodel.ckpt"
+all_model_checkpoint_paths: "/tmp/draw/drawmodel.ckpt"
